@@ -1,0 +1,110 @@
+
+
+
+hr {
+  border:none;
+  height: 20px;
+ 	width: 100%;
+	height: 50px;
+	margin-top: 0;
+	border-bottom: 1px solid #60b4e9;
+	box-shadow: 0 10px 10px -10px #333;
+  margin: -50px auto 10px; 
+}
+.table{
+  box-shadow: -6px -8px 9px 4px rgba(58,65,66,0.41) inset;
+-webkit-box-shadow: -6px -8px 9px 4px rgba(58,65,66,0.41) inset;
+-moz-box-shadow: -6px -8px 9px 4px rgba(58,65,66,0.41) inset;
+}
+.row{
+  margin-top: 5px;
+  margin-left: -2px;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.addContact {
+  /* background-color: #d3d1ca; */
+  min-height: 100vh;
+  color: black;
+}
+
+.list {
+  display: grid;
+  margin: 20px 0 50px 0;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 1fr;
+  grid-gap: 2em;
+}
+
+#showContactList{
+  margin-left: -2%;
+  margin-top: 5%;
+}
+#format{
+  box-shadow: 0 4px 8px 8px rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.card-container {
+  width: 250px;
+  border: 1px solid rgba(0,0,.125);
+  margin: 0 auto;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.desc {
+  height: 130px;
+  padding: 10px;
+}
+
+.desc h2 {
+  font-size: 1em;
+  font-weight: 400;
+}
+
+.desc h3, p {
+  font-weight: 300;
+}
+
+.desc h3 {
+  color: #6c757d;
+  font-size: 1em;
+  padding: 10px 0 10px 0;
+}
+
+.scroll{
+  overflow-x: auto;
+}

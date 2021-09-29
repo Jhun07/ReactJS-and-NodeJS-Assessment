@@ -27,6 +27,12 @@ const columns = [
 
   },
   {
+    field: 'location',
+    headerName: 'Location',
+    width: 200,
+
+  },
+  {
     field: 'registeredDate',
     headerName: 'Registered Date',
     width: 200,
@@ -35,24 +41,43 @@ const columns = [
     field: '',
     headerName: 'Action',
     width: 200,
+    
     renderCell: (params) => {
-      const onClickDelete = async () => {
-        return alert(JSON.stringify(params.row, null, 4));
+
+      const onDelete = async () => {
+     
+        axios
+          .delete('http://localhost:3400/contact/' + params.row._id)
+          .then(() => {
+            console.log(params.row._id)
+
+            window.location.reload();
+            Swal.fire(
+              'Successfully Deleted!',
+            );
+          })
+
+          .catch(err => {
+            console.log("Error in deleting contact!" + err);
+          })
+
       };
+
       return (
         <>
 
           <a href={`contact/view/${params.row._id}`} class="btn" ><i class="fas fa-eye"></i> </a>
           <a href={`contact/update/${params.row._id}`} class="btn"><i class="fa fa-edit" ></i></a>
-          <a href="#"  ><i class="fa fa-trash " onClick={() => this.onDelete(params.row._id)} data-toggle="modal" data-target="#deletdeModal"></i></a>
-        
-        
+          <a href ={`delete/${params.row._id}`}><i class="fa fa-trash " onClick={onDelete} data-toggle="modal" data-target="#deletdeModal"></i></a>
+
+
         </>
       );
     }
 
   }
 ];
+
 
 class showContact extends Component {
   constructor(props) {
@@ -61,8 +86,7 @@ class showContact extends Component {
       contacts: []
     };
   }
-
-
+  
   componentDidMount() {
     axios
       .get('http://localhost:3400/contact')
@@ -87,27 +111,11 @@ class showContact extends Component {
 
   };
 
-  onDelete = (id) => {
-    axios
-      .delete('http://localhost:3400/contact/' + id)
-      .then(() => {
-        console.log(id)
-
-        window.location.reload();
-      Swal.fire(
-        'Successfully Added!',
-      );   })
-      
-      .catch(err => {
-        console.log("Error in deleting contact!" + err);
-      })
-
-  };
 
   render() {
     return (
 
-
+      
       <div className="container" >
         <div className="row float-left">
           <Link className="nav-link " exact to="/">
@@ -127,14 +135,17 @@ class showContact extends Component {
         <div className="btn float-right"><Link to="/contact/add" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
           Add New Contact
         </Link></div>
+        
 
         {/*----------Displaying the data after fetching them from MongoDB-------------- */}
         <div className="container">
           <div className="">
             <br /><br /><hr /><br />
-           
+            
+            <h1>Contact List</h1><br />
+
             <div style={{ height: 400, width: '100%' }}>
-              <DataGrid
+              <DataGrid  style={{color: 'gray'}}
                 rows={this.state.contacts}
                 columns={columns}
                 pageSize={5}
@@ -143,7 +154,7 @@ class showContact extends Component {
                 disableSelectionOnClick
               />
             </div>
-
+            <br />
             <hr /><br />
           </div></div>
       </div>

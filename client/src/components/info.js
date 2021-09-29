@@ -44,7 +44,7 @@ class info extends Component {
                             <h1 className="display-1">Page Not Found</h1>
                         </div>
                     </div>
-                </div> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> 
+                </div> <br/> <br/> <br/> <br /><br/> <br/> <br/> <br/> <br/> <br/> <br/> 
                 <br/> <br/>
                 <hr /><br />
 

@@ -60,7 +60,7 @@ class about extends Component {
                     </div>
                 </div>
 
-                <br/> <br/><br />  <br/> <br/><br/><br/><br/><hr/> <br/>
+                <br/> <br/><br />  <br/> <br/><br/><br/><br/><br /><hr/> <br/>
             </div>
         );
     }

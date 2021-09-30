@@ -54,7 +54,7 @@ class addContact extends Component {
       var finalDate = new Date().toLocaleDateString()
 
         
-      // console.log(this.state.registeredDate);
+      console.log(this.state.registeredDate);
       const data = {
         fullname: this.state.fullname,
         emailAddress: this.state.emailAddress,
@@ -76,7 +76,7 @@ class addContact extends Component {
             registeredDate: '',
           })
           console.log(this.props);
-          this.props.history.push('/');
+          // this.props.history.push('/');
 
           Swal.fire(
             'Successfully Added!',
@@ -126,7 +126,7 @@ class addContact extends Component {
                 <div className='form-group row'>
                   <label for="emailLabel" class="col-sm-2 col-form-label">Email Add :</label>
                   <div class="col-sm-10">
-                    <input required class="form-control" id="emailLabel" maxLength="45"
+                    <input required class="form-control" id="emailLabel" 
                       type='text'
                       placeholder='example@gmail.com'
                       name='emailAddress'

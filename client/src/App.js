@@ -12,8 +12,6 @@ class App extends Component {
     return (
       <Router>
         <div>
-
-        
           <Route exact path='/' component={showContact} />
           <Route path='/contact/add' component={addContact} />
           <Route path='/contact/update/:id' component={editContact} />

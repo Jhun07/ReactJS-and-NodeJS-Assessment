@@ -5,9 +5,7 @@ import '../App.css';
 
 const contactCard = (props) => {
     var  contact = props.contacts;
-  //  console.log(contact);
-   
-  //   console.log("jaesa");
+ 
     return(    
         <div className="container">
         <div className="py-4">

@@ -51,10 +51,17 @@ class addContact extends Component {
 
     if (this.validation(fullname, emailAddress, contactNumber, location, registeredDate)) {
 
-      var finalDate = new Date().toLocaleDateString()
+      
+      var todayDate = new Date().toISOString().slice(0, 10); // TO CONFIRM THE DATE INPUT FROM USER YYYY/MM/DD
 
-        
-      // console.log(this.state.registeredDate);
+
+      var finalDate = new Date().toLocaleDateString() // 8/19/2020
+ 
+
+         
+     
+
+      console.log(this.state.registeredDate);
       const data = {
         fullname: this.state.fullname,
         emailAddress: this.state.emailAddress,
@@ -64,7 +71,7 @@ class addContact extends Component {
       };
       console.log(data);
      
-     
+      if (this.state.registeredDate===todayDate) {
         axios
         .post('http://localhost:3400/contact/add', data)
         .then(res => {
@@ -76,7 +83,7 @@ class addContact extends Component {
             registeredDate: '',
           })
           console.log(this.props);
-          this.props.history.push('/');
+          // this.props.history.push('/');
 
           Swal.fire(
             'Successfully Added!',
@@ -86,9 +93,12 @@ class addContact extends Component {
         .catch(err => {
           console.log("Error in adding contact!");
         })
-      } 
+      } else {
+        console.log("Sayop")
+        
+      }
 
-    
+    }
   };
 
   render() {

@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import '../App.css';
 import axios from 'axios';
-import showContact from './showContact';
+
 
 
 class viewContact extends Component {
-  
+
   constructor(props) {
-    
+
     super(props);
     console.log(props);
 
@@ -19,14 +19,12 @@ class viewContact extends Component {
       location: '',
       registeredDate: '',
     };
-   
+
   }
 
   componentDidMount() {
-    
-    
+
     const cons_id = this.props.match.params.id;
-    
     axios
       .get(`http://localhost:3400/contact/view/${cons_id}`)
       .then((res) => {
@@ -48,83 +46,46 @@ class viewContact extends Component {
   render() {
     return (
 
-      <div className="addContact">
+      <div className="viewContact">
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <Link to="/" className="btn  btn-outline-primary float-left" id="showContactList">
-                Show Contact List
-              </Link>
             </div>  <br /> <br />  <br /> <br />
-            <div className="rounded col-md-8 m-auto border bg-info border-dark " id="format">
+            <div className="rounded col-md-5 m-auto border bg-white border-dark " id="format" >
               <br />
               <p className="lead text-center">
                 View contact
               </p>
 
               <form noValidate onSubmit={this.onSubmit}>
-                <div class="form-group row">
-                  <label for="fullnameLabel" class="col-sm-2 col-form-label">Fullname :</label>
-                  <div class="col-sm-10">
-                    <input required disabled class="form-control" id="fullnameLabel"
-                    type='text'
-                    name='fullname'
-                    className='form-control'
-                    value={this.state.fullname}
-                    onChange={this.onChange}
-                  />
-                  </div>
+                <div class="form-group" >
+                  <b for="fullnameLabel" >Fullname : &nbsp;</b>
+                  
+                    {this.state.fullname}
+        
                 </div>
-               
-                <div className='form-group row'>
-                <label for="emailLabel" class="col-sm-2 col-form-label">Email Add :</label>
-                <div class="col-sm-10">
-                  <input required disabled  class="form-control" id="emailLabel"
-                    type='text'
-                    name='emailAddress'
-                    className='form-control'
-                    value={this.state.emailAddress}
-                    onChange={this.onChange}
-                  />
-                </div></div>
-               
-                <div className='form-group row'>
-                <label for="contactLabel" class="col-sm-2 col-form-label">Contact # :</label>
-                <div class="col-sm-10">
-                  <input required disabled class="form-control" id="contactLabel"
-                    type='number'
-                    name='contactNumber'
-                    className='form-control'
-                    value={this.state.contactNumber}
-                    onChange={this.onChange}
-                  />
-                </div></div>
 
-                <div className='form-group row'>
-                 <label for="locationLabel" class="col-sm-2 col-form-label">Location :</label>
-                 <div class="col-sm-10">
-                  <select class="form-select"  disabled  class="form-control" id="locationLabel" name='location' className='form-control' aria-label="Default select example" value={this.state.location}
-                    onChange={this.onChange}>
-                    <option selected>Choose location</option>
-                    <option value="Manila">Manila</option>
-                    <option value="Cebu">Cebu</option>
-                  </select>
+                <div className='form-group'>
+                  <b for="emailLabel" >Email Address : &nbsp;</b>
+                  
+                      {this.state.emailAddress}
+                  </div>
 
+                <div className='form-group'>
+                  <b for="contactLabel" >Contact Number: &nbsp;</b>
+                   {this.state.contactNumber}
+                </div>
 
+                <div className='form-group'>
+                  <b for="locationLabel">Location : &nbsp;</b>
+                
+              {this.state.location}
+                </div>
 
-                </div> </div>
-
-                <div className='form-group row'>
-                  <label for="registeredLabel" class="col-xs-3 col-form-label">Registered Date : </label>
-                  <div class="col-sm-10">
-                  <input
-                    type='date' disabled class="form-control" id="registeredLabel"
-                    name='registeredDate'
-                    className='form-control'
-                    value={this.state.registeredDate}
-                    onChange={this.onChange}
-                  />
-                </div></div>
+                <div className='form-group'>
+                  <b for="registeredLabel">Registered Date : &nbsp;</b>
+                    {this.state.registeredDate}
+                  </div>
                 <Link exact to='/'> <button className="btn btn-outline-white btn-block mt-4">Back to the Table</button></Link>
                 <br />
               </form>

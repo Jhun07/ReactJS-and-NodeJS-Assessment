@@ -8,7 +8,6 @@ import { FormError } from './validation';
 class editContact extends Component {
   constructor(props) {
     super(props);
-    console.log(props);
 
     this.state = {
       fullname: '',
@@ -16,7 +15,7 @@ class editContact extends Component {
       contactNumber: '',
       location: '',
       registeredDate: '',
-      errors:{}
+      errors: {}
     };
   }
 
@@ -32,10 +31,10 @@ class editContact extends Component {
 
 
   //   //Checking validation before submitting 
-    validation = (fullname, fullname1, fullname2, emailAddress,emailAddress2, emailAddress3, contactNumber, location, registeredDate) => {
-      const setErrors = FormError(fullname, fullname1, fullname2, emailAddress,emailAddress2, emailAddress3,contactNumber, location, registeredDate);
-      this.setState({errors: setErrors});
-      return Object.values(setErrors).every((err) => err === "");
+  validation = (fullname, fullname1, fullname2, emailAddress, emailAddress2, emailAddress3, contactNumber, location, registeredDate) => {
+    const setErrors = FormError(fullname, fullname1, fullname2, emailAddress, emailAddress2, emailAddress3, contactNumber, location, registeredDate);
+    this.setState({ errors: setErrors });
+    return Object.values(setErrors).every((err) => err === "");
   }
 
 
@@ -64,11 +63,13 @@ class editContact extends Component {
 
   onSubmit = e => {
     e.preventDefault();
+    console.log("ASfsa")
+    
 
     const cons_id = this.props.match.params.id;
     const { fullname, emailAddress, contactNumber, location, registeredDate } = this.state;
 
-    if (this.validation(fullname, emailAddress, contactNumber, location, registeredDate)) {
+    
 
       const data = {
         fullname: this.state.fullname,
@@ -78,42 +79,39 @@ class editContact extends Component {
         registeredDate: this.state.registeredDate,
       };
 
-      console.log(data);
 
       axios
         .put(`http://localhost:3400/contact/update/${cons_id}`, data)
         .then(() => {
           this.setState({
-            fullname: '',
-            emailAddress: '',
-            contactNumber: '',
-            location: '',
-            registeredDate: '',
+            fullname: this.state.fullname,
+            emailAddress: this.state.emailAddress,
+            contactNumber: this.state.contactNumber,
+            location: this.state.location,
+            registeredDate: this.state.registeredDate,
           })
           this.props.history.push('/');
-          Swal.fire(
-            'Successfully Updated!',
-
-          );
+          console.log("ha")
+        
         })
         .catch(err => {
           console.log("Error in adding contact!" + err);
         })
-    }
+   
   };
-
+  
   render() {
     return (
 
-      <div className="addContact">
+      <div className="editContact">
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
               <Link to="/" className="btn  btn-outline-primary float-left" id="showContactList">
-                Show Contact List
+                Back
               </Link>
             </div>  <br /> <br />  <br /> <br />
-            <div className="rounded col-md-8 m-auto border bg-info border-dark " id="format">
+            <div className="rounded col-md-8 m-auto border bg-white border-dark " id="format">
               <br />
               <p className="lead text-center">
                 Edit contact
@@ -145,8 +143,8 @@ class editContact extends Component {
                       value={this.state.emailAddress}
                       onChange={this.onChange}
                     />
-                    <em style={{color:"red"}}>{this.state.errors.emailAddress2 || this.state.errors.emailAddress }</em> <br/>
-                  <em style={{color:"red"}}>{this.state.errors.emailAddress3}</em>
+                    <i style={{ fontFamily: "Serif" }}>{this.state.errors.emailAddress2 || this.state.errors.emailAddress}</i> 
+                    <i style={{ fontFamily: "Serif" }}>{this.state.errors.emailAddress3}</i>
                   </div></div>
 
                 <div className='form-group row'>
@@ -160,7 +158,7 @@ class editContact extends Component {
                       value={this.state.contactNumber}
                       onChange={this.onChange}
                     />
-                    <i style={{fontFamily:"Serif"}}>{this.state.errors.contactNumber || this.state.errors.contactNumber1 || this.state.errors.contactNumber2}</i>
+                    <i style={{ fontFamily: "Serif" }}>{this.state.errors.contactNumber || this.state.errors.contactNumber1 || this.state.errors.contactNumber2}</i>
                   </div></div>
 
                 <div className='form-group row'>
@@ -172,14 +170,14 @@ class editContact extends Component {
                       <option value="Manila">Manila</option>
                       <option value="Cebu">Cebu</option>
                     </select>
-                    <em style={{color:"red"}}>{this.state.errors.location}</em>
+                    <em style={{ color: "red" }}>{this.state.errors.location}</em>
                   </div></div>
 
                 <div className='form-group row'>
                   <label for="registeredLabel" class="col-xs-3 col-form-label">Registered Date : </label>
                   <div class="col-sm-10">
                     <input
-                      type='date' class="form-control" id="registeredLabel" disabled
+                      type='text' class="form-control" id="registeredLabel" disabled
                       placeholder='Enter registeredDate '
                       name='registeredDate'
                       className='form-control'
@@ -190,7 +188,7 @@ class editContact extends Component {
 
                 <input
                   type="submit"
-                  onClick={this.onSubmit}
+                  
                   className="btn btn-outline-white btn-block mt-4"
                 /> <br />
               </form>

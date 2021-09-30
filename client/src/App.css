@@ -1,6 +1,11 @@
-
+body{
+  background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxeu2XOOhyHxMXR8qtZHS3Ijp3jGcxqUWtXYg9fekbjU5yc_REY2KoH14ZL4eX5m0GN4w&usqp=CAU");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 h1 {
-  text-shadow: 2px 2px #63ceff;
+  text-shadow: 2px 2px #0f78a8;
 }
 
 hr {
@@ -13,11 +18,11 @@ hr {
 	box-shadow: 0 10px 10px -10px #333;
   margin: -50px auto 10px; 
 }
-.table{
+/* .table{
   box-shadow: -6px -8px 9px 4px rgba(58,65,66,0.41) inset;
 -webkit-box-shadow: -6px -8px 9px 4px rgba(58,65,66,0.41) inset;
 -moz-box-shadow: -6px -8px 9px 4px rgba(58,65,66,0.41) inset;
-}
+} */
 .row{
   margin-top: 5px;
   margin-left: -2px;
@@ -77,6 +82,7 @@ hr {
 }
 #format{
   box-shadow: 0 4px 8px 8px rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.19);
+  
 }
 
 .card-container {
@@ -109,4 +115,21 @@ hr {
 
 .scroll{
   overflow-x: auto;
+}
+.my-actions { margin: 0 2em; }
+.order-1 { order: 1; }
+.order-2 { order: 2; }
+.order-3 { order: 3; }
+ 
+.right-gap {
+  margin-right: auto;
+}
+
+.MuiDataGrid-root .MuiDataGrid-columnsContainer{
+background-color: #0f78a8;
+color: white;
+}
+.MuiDataGrid-root .MuiDataGrid-columnHeaderTitle {
+font-style: bold;
+
 }

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import '../App.css';
 import { Link } from 'react-router-dom';
 
-
 class info extends Component {
     constructor(props) {
         super(props);
@@ -46,12 +45,7 @@ class info extends Component {
                 </div> <br /> <br /> <br /> <br /><br /> <br /> <br /> <br /> <br /> <br /> <br />
                 <br /> <br />
                 <hr /><br />
-
-
             </div>
-
-
-
         );
     }
 }

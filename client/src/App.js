@@ -7,6 +7,7 @@ import showContact from './components/showContact';
 import about from './components/about';
 import info from './components/info';
 import viewContact from './components/viewContact';
+import deleteContact from './components/deleteContact'
 class App extends Component {
   render() {
     return (
@@ -14,8 +15,9 @@ class App extends Component {
         <div>
           <Route exact path='/' component={showContact} />
           <Route path='/contact/add' component={addContact} />
-          <Route path='/contact/update/:id' component={editContact} />
-          <Route path='/contact/view/:id' component={viewContact} />
+          <Route path='/contact/update/:EditId' component={editContact} />
+          <Route path='/contact/delete/:DeleteId' component={deleteContact} />
+          <Route path='/contact/view/:ViewId' component={viewContact} />
           <Route path='/about' component={about} />
           <Route path='/info' component={info} />
         </div>

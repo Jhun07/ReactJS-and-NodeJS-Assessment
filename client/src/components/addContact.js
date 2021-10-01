@@ -5,11 +5,6 @@ import axios from 'axios';
 import { FormError } from './validation';
 import Swal from 'sweetalert2';
 
-
-const header = {
-
-}
-
 class addContact extends Component {
   constructor() {
     super();
@@ -23,15 +18,7 @@ class addContact extends Component {
       errors: {}
     };
   }
-
-  //this is for CONTACT NUMBER LIMITS
-  maxLengthCheck = (object) => {
-    if (object.target.value.length > object.target.maxLength) {
-      object.target.value = object.target.value.slice(0, object.target.maxLength)
-    }
-  }
-
-
+  //will change the provide value
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
@@ -53,8 +40,8 @@ class addContact extends Component {
 
       var finalDate = new Date().toLocaleDateString()
 
-        
-      // console.log(this.state.registeredDate);
+
+      //hold the current data
       const data = {
         fullname: this.state.fullname,
         emailAddress: this.state.emailAddress,
@@ -63,9 +50,9 @@ class addContact extends Component {
         registeredDate: finalDate,
       };
       console.log(data);
-     
-     
-        axios
+
+      //Axios is used for adding data to MongoDB
+      axios
         .post('http://localhost:3400/contact/add', data)
         .then(res => {
           this.setState({
@@ -80,20 +67,16 @@ class addContact extends Component {
 
           Swal.fire(
             'Successfully Added!',
-
           );
         })
         .catch(err => {
           console.log("Error in adding contact!");
         })
-      } 
-
-    
+    }
   };
 
   render() {
     return (
-
       <div className="addContact">
         <div className="container ">
           <div className="row ">
@@ -170,8 +153,6 @@ class addContact extends Component {
                       placeholder='Enter registeredDate '
                       name='registeredDate' class="form-control" id="registeredLabel"
                       className='form-control'
-
-
                       value={this.state.registeredDate}
                       onChange={this.onChange}
                     /><i style={{ fontFamily: "Serif" }}>{this.state.errors.registeredDate || this.state.errors.registeredDate2}</i>

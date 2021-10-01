@@ -8,10 +8,6 @@ export const FormError = (fullname, emailAddress, contactNumber, location, regis
   
   var todayDate = new Date().toISOString().slice(0, 10); // TO CONFIRM THE DATE INPUT FROM USER YYYY/MM/DD
 
-
-  
-
-
   //checking first the requirements before putting it to errors array
   errors.fullname = fullname ? "" : "Fullname field cannot be blank.";
   errors.fullname1 = fullname.length >= 31 ? 'Fullname field accepts up to 30 in size only!' : '';
@@ -34,7 +30,6 @@ export const FormError = (fullname, emailAddress, contactNumber, location, regis
   errors.registeredDate = registeredDate ? "" : "Registered date cannot be blank.";
   errors.registeredDate2 = registeredDate === todayDate ? "" : "Registered date accepts current date only!"
   
-
 
   return errors;
 }

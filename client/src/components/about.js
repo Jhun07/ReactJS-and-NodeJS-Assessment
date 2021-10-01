@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import '../App.css';
 import { Link } from 'react-router-dom';
 
-
-
 class about extends Component {
     constructor(props) {
         super(props);
@@ -11,8 +9,6 @@ class about extends Component {
             contacts: []
         };
     }
-
-
     render() {
         return (
 

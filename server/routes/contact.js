@@ -37,7 +37,7 @@ router.route('/view/:id').get((req,res)=> {
 })
 
 //delete
-router.route('/:id').delete((req,res)=> {
+router.route('/delete/:id').delete((req,res)=> {
     Contact.findByIdAndDelete(req.params.id)
         .then(contact => res.json('Record was deleted.'))
         .catch(err => res.status(400).json('Error: '+ err));

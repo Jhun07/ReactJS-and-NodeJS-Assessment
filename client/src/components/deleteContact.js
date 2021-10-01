@@ -4,9 +4,10 @@ import '../App.css';
 import axios from 'axios';
 
 
+class deleteContact extends Component {
 
-class viewContact extends Component {
   constructor(props) {
+
     super(props);
     console.log(props);
 
@@ -20,12 +21,12 @@ class viewContact extends Component {
 
   }
 
+  //Fetchiong the data
   componentDidMount() {
-    const viewId = this.props.match.params.ViewId;
+    const deleteId = this.props.match.params.DeleteId;
     axios
-      .get(`http://localhost:3400/contact/view/${viewId}`)
+      .get(`http://localhost:3400/contact/view/${deleteId}`)
       .then((res) => {
-        console.log(res.data);
 
         this.setState({
           fullname: res.data.fullname,
@@ -37,7 +38,23 @@ class viewContact extends Component {
         })
 
       })
+  }
+  //Deleting Contact Function
+  handleDeleteContact = () => {
 
+    const id = this.props.match.params.DeleteId;
+    axios
+      .delete(`http://localhost:3400/contact/delete/${id}`)
+
+      .then((res) => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log("Error in deleting contact!" + err);
+      })
+
+    this.props.history.push('/');
+    window.location.reload();
   }
 
   render() {
@@ -51,10 +68,10 @@ class viewContact extends Component {
             <div className="rounded col-md-5 m-auto border bg-white border-dark " id="format" >
               <br />
               <p className="lead text-center">
-                View contact
+                Delete contact
               </p>
 
-              <form noValidate onSubmit={this.onSubmit}>
+              <form noValidate  >
                 <div class="form-group" >
                   <b for="fullnameLabel" >Fullname : &nbsp;</b>
 
@@ -83,8 +100,10 @@ class viewContact extends Component {
                   <b for="registeredLabel">Registered Date : &nbsp;</b>
                   {this.state.registeredDate}
                 </div>
-                <Link exact to='/'> <button className="btn btn-outline-white btn-block mt-4">Back to the Table</button></Link>
+                <button type="submit" onClick={() => this.handleDeleteContact()} className="btn btn-outline-white btn-block mt-4">Delete</button>
+                <Link exact to='/'> <button className="btn btn-outline-white btn-block mt-4">Cancel</button></Link>
                 <br />
+
               </form>
             </div>
           </div>
@@ -94,4 +113,4 @@ class viewContact extends Component {
   }
 }
 
-export default viewContact;
+export default deleteContact;

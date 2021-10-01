@@ -130,7 +130,6 @@ const columns = [
             );
             window.location.reload();
           })
-
           .catch(err => {
             console.log("Error in deleting contact!" + err);
           })
@@ -139,7 +138,7 @@ const columns = [
         <>
           <a href={`contact/view/${params.row._id}`} class="btn" ><i class="fas fa-eye"></i> </a>
           <a href={`contact/update/${params.row._id}`} class="btn"><i class="fa fa-edit" ></i></a>&nbsp; &nbsp;&nbsp;
-          <a href={``}> <i class="fa fa-trash " onClick={onDelete}></i></a>
+          <a href={`contact/delete/${params.row._id}`}><i class="fa fa-trash "></i></a>
         </>
       );
     }

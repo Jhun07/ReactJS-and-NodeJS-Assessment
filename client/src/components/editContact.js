@@ -40,7 +40,7 @@ class editContact extends Component {
 
   componentDidMount() {
 
-    const cons_id = this.props.match.params.id;
+    const cons_id = this.props.match.params.EditId;
 
     axios
       .get(`http://localhost:3400/contact/view/${cons_id}`)
@@ -66,7 +66,7 @@ class editContact extends Component {
     console.log("ASfsa")
     
 
-    const cons_id = this.props.match.params.id;
+    const EditId = this.props.match.params.EditId;
     const { fullname, emailAddress, contactNumber, location, registeredDate } = this.state;
 
     
@@ -79,24 +79,32 @@ class editContact extends Component {
         registeredDate: this.state.registeredDate,
       };
 
+      Swal.fire({
+                    title: 'Do you want to save the changes?',
+                    showDenyButton: true,
+                    showCancelButton: true,
+                    text: `${'Email Address: ' + emailAddress +'\n'}`+`${ 'Contact Number: ' + contactNumber}` +'\n' + `${'Location: ' + location}`  ,
+                    confirmButtonText: 'Yes',
+                    denyButtonText: 'No',
+                    customClass: {
+                      actions: 'my-actions',
+                      cancelButton: 'order-1 right-gap',
+                      confirmButton: 'order-2',
+                      denyButton: 'order-3',
+                    }
+                  })
+                  .then((result) => {
+                    if (result.isConfirmed) {
+                      Swal.fire('Saved!', '', 'success')
+                      axios
+                      .put(`http://localhost:3400/contact/update/${EditId}`, data)
+                      window.location.reload()
+                    } else if (result.isDenied) {
+                      Swal.fire('Changes are not saved', '', 'info')
+                    }
+                  })
+                 this.props.history.push('/');
 
-      axios
-        .put(`http://localhost:3400/contact/update/${cons_id}`, data)
-        .then(() => {
-          this.setState({
-            fullname: this.state.fullname,
-            emailAddress: this.state.emailAddress,
-            contactNumber: this.state.contactNumber,
-            location: this.state.location,
-            registeredDate: this.state.registeredDate,
-          })
-          this.props.history.push('/');
-          console.log("ha")
-        
-        })
-        .catch(err => {
-          console.log("Error in adding contact!" + err);
-        })
    
   };
   

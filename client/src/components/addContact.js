@@ -4,6 +4,7 @@ import '../App.css';
 import axios from 'axios';
 import { FormError } from './validation';
 import Swal from 'sweetalert2';
+import image from './images/create.jpg';
 
 class addContact extends Component {
   constructor() {
@@ -77,9 +78,11 @@ class addContact extends Component {
 
   render() {
     return (
+      <div>
+      <img id="createIcon" src={image} height={413}  />
       <div className="addContact">
         <div className="container ">
-          <div className="row ">
+          <div  id="createContainer" className="row ">
             <br />   <br />  <br />   <br />
             <div className="col-md-8 m-auto " >
               <Link to="/" className="btn btn-outline-primary float-left" id="showContactList">
@@ -89,7 +92,7 @@ class addContact extends Component {
             <br />
             <div className="rounded col-md-8 m-auto border bg-white border-dark " id="format">
               <br />
-              <p className="lead text-center">
+              <p id="titleCreate" className="lead text-center">
                 Create new contact
               </p>
               <form noValidate onSubmit={this.onSubmit}>
@@ -107,7 +110,7 @@ class addContact extends Component {
                   </div>
                 </div>
                 <div className='form-group row'>
-                  <label for="emailLabel" class="col-sm-2 col-form-label">Email Add :</label>
+                  <label for="emailLabel" class="col-sm-2  col-form-label">Email Add :</label>
                   <div class="col-sm-10">
                     <input required class="form-control" id="emailLabel" maxLength="45"
                       type='text'
@@ -160,13 +163,14 @@ class addContact extends Component {
                 <input
                   type="submit"
                   onClick={this.onSubmit}
-                  className="btn btn-outline-white btn-block mt-4 "
+                  className="btn btn-outline-white btn-info btn-block mt-4 "
                 />
                 <br />
               </form>
             </div>
           </div>
         </div><br />
+      </div>
       </div>
     );
   }

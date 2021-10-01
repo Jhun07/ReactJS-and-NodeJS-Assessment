@@ -27,12 +27,29 @@ hr {
   margin-top: 5px;
   margin-left: -2px;
 }
+#createIcon{
+  margin-left: 80.7%;
+  margin-top: 9%;
+  width: 15%;
+  border: 1px solid rgb(37, 34, 34);
+  border-radius: 4px;
+  box-shadow: 0 4px 4px 4px rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#createContainer{
+  margin-top: -45.9%;
+}
+#titleCreate{
+  color: #0f78a8;
+}
+
+
 #deleteIcon{
   margin-left: 69.3%;
   margin-top: 9%;
   width: 15%;
   border: 1px solid rgb(37, 34, 34);
   border-radius: 4px;
+  box-shadow: 0 4px 4px 4px rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.19);
 }
 #deleteContainer{
   margin-top: -39.4%;
@@ -54,13 +71,24 @@ hr {
   width: 13%;
   border: 1px solid rgb(37, 34, 34);
   border-radius: 4px;
+  box-shadow: 0 4px 4px 4px rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.19);
 }
 #editContainer{
-  background-attachment: fixed;
-  background-image: url('https://img.freepik.com/free-photo/old-vintage-white-wood-background_23-2148327722.jpg?size=626&ext=jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
+  margin-top: -45.8%;
 }
+#titleEdit{
+  color: #0f78a8;
+}
+#editIcon{
+  margin-left: 80.3%;
+  margin-top: 9%;
+  width: 13%;
+  border: 1px solid rgb(37, 34, 34);
+  border-radius: 4px;
+  box-shadow: 0 4px 4px 4px rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
 .App {
   text-align: center;
 }

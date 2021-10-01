@@ -4,6 +4,7 @@ import '../App.css';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { FormError } from './validation';
+import image from './images/edit.png';
 
 class editContact extends Component {
   constructor(props) {
@@ -114,6 +115,8 @@ class editContact extends Component {
   render() {
     return (
 
+      <div>
+      <img id="editIcon" src={image} height={412}  />
       <div className="editContact">
         <div className="container">
           <div  id="editContainer" className="row">
@@ -124,7 +127,7 @@ class editContact extends Component {
             </div>  <br /> <br />  <br /> <br />
             <div className="rounded col-md-8 m-auto border bg-white border-dark " id="format">
               <br />
-              <p className="lead text-center">
+              <p id="titleEdit" className="lead text-center">
                 Edit contact
               </p>
 
@@ -200,15 +203,13 @@ class editContact extends Component {
                 <input
                   type="submit"
                   
-                  className="btn btn-outline-white btn-block mt-4"
+                  className="btn btn-outline-white btn-info btn-block mt-4"
                 /> <br />
               </form>
             </div>
           </div>
         </div >
-
-
-
+        </div>
       </div >
     );
   }

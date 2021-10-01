@@ -97,7 +97,7 @@ class addContact extends Component {
               </p>
               <form noValidate onSubmit={this.onSubmit}>
                 <div className='form-group  row'>
-                  <label for="fullnameLabel" class="col-sm-2 col-form-label">Fullname :</label>
+                  <label for="fullnameLabel" class="col-sm-2 fs-bolder col-form-label">Fullname :</label>
                   <div class="col-sm-10">
                     <input required class="form-control" id="fullnameLabel"
                       type='text'
@@ -110,7 +110,7 @@ class addContact extends Component {
                   </div>
                 </div>
                 <div className='form-group row'>
-                  <label for="emailLabel" class="col-sm-2  col-form-label">Email Add :</label>
+                  <label for="emailLabel" class="col-sm-2  fs-bolder col-form-label">Email Add :</label>
                   <div class="col-sm-10">
                     <input required class="form-control" id="emailLabel" maxLength="45"
                       type='text'
@@ -126,7 +126,7 @@ class addContact extends Component {
                   </div></div>
 
                 <div className='form-group row'>
-                  <label for="contactLabel" class="col-sm-2 col-form-label">Contact # :</label>
+                  <label for="contactLabel" class="col-sm-2 fs-bolder col-form-label">Contact # :</label>
                   <div class="col-sm-10">
                     <input required class="form-control" id="contactLabel"
                       type='number'
@@ -138,7 +138,7 @@ class addContact extends Component {
                     /><i style={{ fontFamily: "Serif" }}>{this.state.errors.contactNumber || this.state.errors.contactNumber1 || this.state.errors.contactNumber2}</i>
                   </div></div>
                 <div className='form-group row'>
-                  <label for="locationLabel" class="col-sm-2 col-form-label">Location :</label>
+                  <label for="locationLabel" class="col-sm-2 fs-bolder col-form-label">Location :</label>
                   <div class="col-sm-10">
                     <select class="form-select" class="form-control" id="locationLabel" name='location' className='form-control' aria-label="Default select example" value={this.state.location}
                       onChange={this.onChange}>
@@ -149,7 +149,7 @@ class addContact extends Component {
                   </div></div>
 
                 <div className='form-group row'>
-                  <label for="registeredLabel" class="col-xs-3 col-form-label">Registered Date : </label>
+                  <label for="registeredLabel" class="col-xs-3 fs-bolder col-form-label">Registered Date : </label>
                   <div class="col-sm-10">
                     <input
                       type='date'

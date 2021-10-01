@@ -55,7 +55,7 @@ class showContact extends Component {
 
 
         {/*----------Displaying the data after fetching them from MongoDB-------------- */}
-        <div className="container">
+        <div  className="container">
           <div className="">
             <br /><br /><hr /><br />
 

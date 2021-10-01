@@ -19,22 +19,17 @@ class editContact extends Component {
     };
   }
 
-  //this is for CONTACT NUMBER LIMITS
-  maxLengthCheck = (object) => {
-    if (object.target.value.length > object.target.maxLength) {
-      object.target.value = object.target.value.slice(0, object.target.maxLength)
-    }
-  }
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
 
   //   //Checking validation before submitting 
-  validation = (fullname, fullname1, fullname2, emailAddress, emailAddress2, emailAddress3, contactNumber, location, registeredDate) => {
-    const setErrors = FormError(fullname, fullname1, fullname2, emailAddress, emailAddress2, emailAddress3, contactNumber, location, registeredDate);
-    this.setState({ errors: setErrors });
-    return Object.values(setErrors).every((err) => err === "");
+  validation = (fullname, emailAddress, contactNumber, location, registeredDate) => {
+    const setErrors = FormError(fullname, emailAddress, contactNumber, location, registeredDate);
+    console.log(setErrors)
+    // this.setState({ errors: setErrors });
+    // return Object.values(setErrors).every((err) => err === "");
   }
 
 
@@ -63,15 +58,21 @@ class editContact extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    console.log("ASfsa")
     
 
     const EditId = this.props.match.params.EditId;
     const { fullname, emailAddress, contactNumber, location, registeredDate } = this.state;
+    console.log(registeredDate);
+    var todayDate = new Date().toISOString().slice(0, 10);
+    console.log(todayDate);
+    this.validation(fullname, emailAddress, contactNumber, location, registeredDate);
+    console.log(this.validation(fullname, emailAddress, contactNumber, location, registeredDate));
+    if (this.validation(fullname, emailAddress, contactNumber, location, registeredDate)) {
+      console.log('Validated');
+    }
+    else{
+    const data = {
 
-    
-
-      const data = {
         fullname: this.state.fullname,
         emailAddress: this.state.emailAddress,
         contactNumber: this.state.contactNumber,
@@ -79,14 +80,11 @@ class editContact extends Component {
         registeredDate: this.state.registeredDate,
       };
 
-      const text =      '<b style="color:#0f78a8;"> Email Address: </b>' + `${emailAddress}` + '<br/>' + '<b style="color:#0f78a8;">Contact Number: </b>' + `${contactNumber}` + '<br/>' + '<b style="color:#0f78a8;"> Location: </b>' + `${location}`;
-
       Swal.fire({
                     title: 'Do you want to save the changes?',
                     showDenyButton: true,
                     showCancelButton: true,
-                    html: text,
-                    
+                    text: `${'Email Address: ' + emailAddress +'\n'}`+`${ 'Contact Number: ' + contactNumber}` +'\n' + `${'Location: ' + location}`  ,
                     confirmButtonText: 'Yes',
                     denyButtonText: 'No',
                     customClass: {
@@ -107,16 +105,14 @@ class editContact extends Component {
                     }
                   })
                  this.props.history.push('/');
-
-   
   };
-  
+ }
   render() {
     return (
 
       <div className="editContact">
         <div className="container">
-          <div  id="editContainer" className="row">
+          <div className="row">
             <div className="col-md-8 m-auto">
               <Link to="/" className="btn  btn-outline-primary float-left" id="showContactList">
                 Back
@@ -197,11 +193,10 @@ class editContact extends Component {
                     />
                   </div></div>
 
-                <input
-                  type="submit"
+                <button  className="btn btn-outline-white btn-block mt-4">submit</button>
                   
-                  className="btn btn-outline-white btn-block mt-4"
-                /> <br />
+                 
+             <br />
               </form>
             </div>
           </div>

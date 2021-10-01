@@ -24,7 +24,7 @@ class addContact extends Component {
   };
 
 
-  //Checking validation before submitting 
+  //Checking validation function before submitting 
   validation = (fullname, fullname1, fullname2, emailAddress, emailAddress2, emailAddress3, contactNumber, location, registeredDate, registeredDate2) => {
     const setErrors = FormError(fullname, fullname1, fullname2, emailAddress, emailAddress2, emailAddress3, contactNumber, location, registeredDate, registeredDate2);
     this.setState({ errors: setErrors });

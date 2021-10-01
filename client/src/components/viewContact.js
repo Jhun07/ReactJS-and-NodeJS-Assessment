@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import '../App.css';
 import axios from 'axios';
+import image from './images/lock.jpg';
 
 
 
@@ -42,15 +43,17 @@ class viewContact extends Component {
 
   render() {
     return (
-
+      <div>
+    <img id="lockIcon" src={image} height={342}  />
       <div className="viewContact">
         <div className="container">
-          <div className="row">
+          <div id ="viewContainer"cclassName="row">
+            
             <div className="col-md-8 m-auto">
             </div>  <br /> <br />  <br /> <br />
             <div className="rounded col-md-5 m-auto border bg-white border-dark " id="format" >
               <br />
-              <p className="lead text-center">
+              <p id="titleView"className="lead text-center">
                 View contact
               </p>
 
@@ -83,13 +86,14 @@ class viewContact extends Component {
                   <b for="registeredLabel">Registered Date : &nbsp;</b>
                   {this.state.registeredDate}
                 </div>
-                <Link exact to='/'> <button className="btn btn-outline-white btn-block mt-4">Back to the Table</button></Link>
+                <Link exact to='/'> <button className="btn btn-outline-white btn-info btn-block mt-4">Back to the Table</button></Link>
                 <br />
               </form>
             </div>
           </div>
         </div >
       </div >
+      </div>
     );
   }
 }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import '../App.css';
 import axios from 'axios';
-
+import image from './images/delete.jpg';
 
 class deleteContact extends Component {
 
@@ -52,7 +52,7 @@ class deleteContact extends Component {
       .catch(err => {
         console.log("Error in deleting contact!" + err);
       })
-
+    
     this.props.history.push('/');
     window.location.reload();
   }
@@ -60,14 +60,16 @@ class deleteContact extends Component {
   render() {
     return (
 
-      <div className="viewContact">
-        <div className="container">
+      <div>
+         <img id="deleteIcon" src={image} height={402}  />
+      <div  className="viewContact">
+        <div id="deleteContainer" className="container" >
           <div className="row">
             <div className="col-md-8 m-auto">
             </div>  <br /> <br />  <br /> <br />
-            <div className="rounded col-md-5 m-auto border bg-white border-dark " id="format" >
+            <div  className="rounded col-md-5 m-auto border bg-white border-dark " id="format" >
               <br />
-              <p className="lead text-center">
+              <p id="titleDelete" className="lead text-center">
                 Delete contact
               </p>
 
@@ -100,8 +102,8 @@ class deleteContact extends Component {
                   <b for="registeredLabel">Registered Date : &nbsp;</b>
                   {this.state.registeredDate}
                 </div>
-                <button type="submit" onClick={() => this.handleDeleteContact()} className="btn btn-outline-white btn-block mt-4">Delete</button>
-                <Link exact to='/'> <button className="btn btn-outline-white btn-block mt-4">Cancel</button></Link>
+                <button type="submit" onClick={() => this.handleDeleteContact()} className="btn btn-outline-white btn-danger btn-block mt-4">Delete</button>
+                <Link exact to='/'> <button className="btn btn-outline-white btn-info btn-block mt-4">Cancel</button></Link>
                 <br />
 
               </form>
@@ -109,6 +111,7 @@ class deleteContact extends Component {
           </div>
         </div >
       </div >
+      </div>
     );
   }
 }

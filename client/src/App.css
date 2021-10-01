@@ -27,9 +27,45 @@ hr {
   margin-top: 5px;
   margin-left: -2px;
 }
+#deleteIcon{
+  margin-left: 69.3%;
+  margin-top: 9%;
+  width: 15%;
+  border: 1px solid rgb(37, 34, 34);
+  border-radius: 4px;
+}
+#deleteContainer{
+  margin-top: -39.4%;
+}
+#titleDelete{
+  color: #0f78a8;
+}
 
+
+#viewContainer{
+  margin-top: -39.6%;
+}
+#titleView{
+  color: #0f78a8;
+}
+#lockIcon{
+  margin-left: 68.5%;
+  margin-top: 10%;
+  width: 13%;
+  border: 1px solid rgb(37, 34, 34);
+  border-radius: 4px;
+}
+#editContainer{
+  background-attachment: fixed;
+  background-image: url('https://img.freepik.com/free-photo/old-vintage-white-wood-background_23-2148327722.jpg?size=626&ext=jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 .App {
   text-align: center;
+}
+.Logo {
+  background-image: url("https://images.cdn2.stockunlimited.net/clipart450/lock-icon_1628292.jpg");
 }
 
 .App-logo {
@@ -81,7 +117,7 @@ hr {
   margin-top: 5%;
 }
 #format{
-  box-shadow: 0 4px 8px 8px rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 4px 4px 4px rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.19);
   
 }
 

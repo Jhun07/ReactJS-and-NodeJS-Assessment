@@ -53,23 +53,24 @@ class editContact extends Component {
       })
 
   }
-  validation = (emailAddress, emailAddress1, emailAddress2, contactNumber, location) =>{
+  validation = (emailAddress, emailAddress1, emailAddress2, contactNumber, contactNumber1, contactNumber2, location) =>{
    const FormError = (emailAddress, contactNumber, location) => {
       const validEmailRegex = RegExp(/^([A-Za-z\d.-]+)@([A-Za-z\d]+)\.([A-Za-z]{2,45})$/);
+      const contactVal = RegExp(/^\d+$/);
       const errors = {};
       errors.emailAddress = emailAddress ? "" : "Email Address field cannot be blank.";
       errors.emailAddress1 = validEmailRegex.test(emailAddress) ? '' : 'Email needs proper domain!';
-      errors.emailAddress2 = emailAddress.length == 46 ? 'Email Address field accepts up to 45 in size only.' : '';
+      errors.emailAddress2 = emailAddress.length >= 45 ? 'Email Address field accepts up to 45 in size only.' : '';
 
+      errors.contactNumber = contactNumber ? "" : "Contact Number field cannot be blank!";
+      errors.contactNumber1 = contactNumber.length >= 12 ? 'Contact Number field accepts up to 11 in size only!' : '';
+      errors.contactNumber2 = contactVal.test(contactNumber) ? "" : 'Contact Number field accepts numeric values only.';
 
-
-
-      errors.contactNumber = contactNumber ? "" : "Contact Number field cannot be blank.";
       errors.location = location ? "" : "Location field cannot be blank."
 
       return errors;
     }
-      const setErrors = FormError(emailAddress, emailAddress1, emailAddress2, contactNumber, location);
+      const setErrors = FormError(emailAddress, emailAddress1, emailAddress2, contactNumber, contactNumber1, contactNumber2, location);
       this.setState({ errors: setErrors });
       return Object.values(setErrors).every((err) => err === "");
     }
@@ -125,10 +126,6 @@ class editContact extends Component {
                 
   };
       };
-    
-    
-
-  
   render() {
     return (
 
@@ -166,7 +163,7 @@ class editContact extends Component {
                 <div className='form-group row'>
                   <label for="emailLabel" class="col-sm-2 fs-bolder col-form-label">Email Add :</label>
                   <div class="col-sm-10">
-                    <input required class="form-control" id="emailLabel" 
+                    <input required class="form-control" id="emailLabel" maxLength="45"
                       type='text'
                       placeholder='Edit email '
                       name='emailAddress'
@@ -188,7 +185,7 @@ class editContact extends Component {
                       value={this.state.contactNumber}
                       onChange={this.onChange}
                     />
-                    <i style={{ fontFamily: "Serif" }}>{this.state.errors.contactNumber}</i>
+                    <i style={{ fontFamily: "Serif" }}>{this.state.errors.contactNumber || this.state.errors.contactNumber1 || this.state.errors.contactNumber2}</i>
                   </div></div>
 
                 <div className='form-group row'>

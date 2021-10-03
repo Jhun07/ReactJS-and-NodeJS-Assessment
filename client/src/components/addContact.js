@@ -142,7 +142,7 @@ class addContact extends Component {
                   <div class="col-sm-10">
                     <select class="form-select" class="form-control" id="locationLabel" name='location' className='form-control' aria-label="Default select example" value={this.state.location}
                       onChange={this.onChange}>
-                      <option selected>Select location</option>
+                      <option value="">Select your location:</option>
                       <option value="Manila">Manila</option>
                       <option value="Cebu">Cebu</option>
                     </select><i style={{ fontFamily: "Serif" }}>{this.state.errors.location}</i>

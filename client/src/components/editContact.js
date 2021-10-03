@@ -25,14 +25,6 @@ class editContact extends Component {
   };
 
 
-  //   //Checking validation before submitting 
-  // validation = (fullname, fullname1, fullname2, emailAddress, emailAddress2, emailAddress3, contactNumber, location, registeredDate) => {
-  //   const setErrors = FormError(fullname, fullname1, fullname2, emailAddress, emailAddress2, emailAddress3, contactNumber, location, registeredDate);
-  //   this.setState({ errors: setErrors });
-  //   return Object.values(setErrors).every((err) => err === "");
-  // }
-
-
   componentDidMount() {
 
     const EditId = this.props.match.params.EditId;
@@ -66,7 +58,7 @@ class editContact extends Component {
       errors.contactNumber1 = contactNumber.length >= 12 ? 'Contact Number field accepts up to 11 in size only!' : '';
       errors.contactNumber2 = contactVal.test(contactNumber) ? "" : 'Contact Number field accepts numeric values only.';
 
-      errors.location = location ? "" : "Location field cannot be blank."
+      errors.location = location  ? " " :"Location field cannot be blank." ;
 
       return errors;
     }
@@ -193,7 +185,7 @@ class editContact extends Component {
                   <div class="col-sm-10">
                     <select class="form-select" class="form-control" id="locationLabel" name='location' className='form-control' aria-label="Default select example" value={this.state.location}
                       onChange={this.onChange}>
-                      <option selected>Choose location</option>
+                      <option value="">Select your location:</option>
                       <option value="Manila">Manila</option>
                       <option value="Cebu">Cebu</option>
                     </select>

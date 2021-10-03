@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import '../App.css';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { FormError } from './validation';
 import image from './images/edit.png';
+
 
 class editContact extends Component {
   constructor(props) {
@@ -20,31 +20,25 @@ class editContact extends Component {
     };
   }
 
-  //this is for CONTACT NUMBER LIMITS
-  maxLengthCheck = (object) => {
-    if (object.target.value.length > object.target.maxLength) {
-      object.target.value = object.target.value.slice(0, object.target.maxLength)
-    }
-  }
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
 
   //   //Checking validation before submitting 
-  validation = (fullname, fullname1, fullname2, emailAddress, emailAddress2, emailAddress3, contactNumber, location, registeredDate) => {
-    const setErrors = FormError(fullname, fullname1, fullname2, emailAddress, emailAddress2, emailAddress3, contactNumber, location, registeredDate);
-    this.setState({ errors: setErrors });
-    return Object.values(setErrors).every((err) => err === "");
-  }
+  // validation = (fullname, fullname1, fullname2, emailAddress, emailAddress2, emailAddress3, contactNumber, location, registeredDate) => {
+  //   const setErrors = FormError(fullname, fullname1, fullname2, emailAddress, emailAddress2, emailAddress3, contactNumber, location, registeredDate);
+  //   this.setState({ errors: setErrors });
+  //   return Object.values(setErrors).every((err) => err === "");
+  // }
 
 
   componentDidMount() {
 
-    const cons_id = this.props.match.params.EditId;
+    const EditId = this.props.match.params.EditId;
 
     axios
-      .get(`http://localhost:3400/contact/view/${cons_id}`)
+      .get(`http://localhost:3400/contact/view/${EditId}`)
       .then((res) => {
         console.log(res.data);
 
@@ -56,22 +50,43 @@ class editContact extends Component {
           registeredDate: res.data.registeredDate
 
         })
-
       })
 
   }
+  validation = (emailAddress, emailAddress1, emailAddress2, contactNumber, location) =>{
+   const FormError = (emailAddress, contactNumber, location) => {
+      const validEmailRegex = RegExp(/^([A-Za-z\d.-]+)@([A-Za-z\d]+)\.([A-Za-z]{2,45})$/);
+      const errors = {};
+      errors.emailAddress = emailAddress ? "" : "Email Address field cannot be blank.";
+      errors.emailAddress1 = validEmailRegex.test(emailAddress) ? '' : 'Email needs proper domain!';
+      errors.emailAddress2 = emailAddress.length == 46 ? 'Email Address field accepts up to 45 in size only.' : '';
 
 
+
+
+      errors.contactNumber = contactNumber ? "" : "Contact Number field cannot be blank.";
+      errors.location = location ? "" : "Location field cannot be blank."
+
+      return errors;
+    }
+      const setErrors = FormError(emailAddress, emailAddress1, emailAddress2, contactNumber, location);
+      this.setState({ errors: setErrors });
+      return Object.values(setErrors).every((err) => err === "");
+    }
+    
   onSubmit = e => {
     e.preventDefault();
     console.log("ASfsa")
     
 
     const EditId = this.props.match.params.EditId;
-    const { fullname, emailAddress, contactNumber, location, registeredDate } = this.state;
 
+
+    const {emailAddress, contactNumber, location } = this.state;
     
-
+    if (!this.validation(emailAddress, contactNumber, location)) {
+      return '';
+    } else{
       const data = {
         fullname: this.state.fullname,
         emailAddress: this.state.emailAddress,
@@ -79,8 +94,7 @@ class editContact extends Component {
         location: this.state.location,
         registeredDate: this.state.registeredDate,
       };
-
-      const text =      '<b style="color:#0f78a8;"> Email Address: </b>' + `${emailAddress}` + '<br/>' + '<b style="color:#0f78a8;">Contact Number: </b>' + `${contactNumber}` + '<br/>' + '<b style="color:#0f78a8;"> Location: </b>' + `${location}`;
+      const text = '<b style="color:#0f78a8;"> Email Address: </b>' + `${emailAddress}` + '<br/>' + '<b style="color:#0f78a8;">Contact Number: </b>' + `${contactNumber}` + '<br/>' + '<b style="color:#0f78a8;"> Location: </b>' + `${location}`;
 
       Swal.fire({
                     title: 'Do you want to save the changes?',
@@ -101,16 +115,19 @@ class editContact extends Component {
                     if (result.isConfirmed) {
                       Swal.fire('Saved!', '', 'success')
                       axios
-                      .put(`http://localhost:3400/contact/update/${EditId}`, data)
+                      .put(`http://localhost:3400/contact/update/${EditId}`, data)      
                       window.location.reload()
                     } else if (result.isDenied) {
                       Swal.fire('Changes are not saved', '', 'info')
                     }
                   })
                  this.props.history.push('/');
-
-   
+                
   };
+      };
+    
+    
+
   
   render() {
     return (
@@ -149,7 +166,7 @@ class editContact extends Component {
                 <div className='form-group row'>
                   <label for="emailLabel" class="col-sm-2 fs-bolder col-form-label">Email Add :</label>
                   <div class="col-sm-10">
-                    <input required class="form-control" id="emailLabel" maxLength="45"
+                    <input required class="form-control" id="emailLabel" 
                       type='text'
                       placeholder='Edit email '
                       name='emailAddress'
@@ -157,8 +174,7 @@ class editContact extends Component {
                       value={this.state.emailAddress}
                       onChange={this.onChange}
                     />
-                    <i style={{ fontFamily: "Serif" }}>{this.state.errors.emailAddress2 || this.state.errors.emailAddress}</i> 
-                    <i style={{ fontFamily: "Serif" }}>{this.state.errors.emailAddress3}</i>
+                    <i style={{ fontFamily: "Serif" }}>{this.state.errors.emailAddress || this.state.errors.emailAddress1 || this.state.errors.emailAddress2}</i>
                   </div></div>
 
                 <div className='form-group row'>
@@ -172,7 +188,7 @@ class editContact extends Component {
                       value={this.state.contactNumber}
                       onChange={this.onChange}
                     />
-                    <i style={{ fontFamily: "Serif" }}>{this.state.errors.contactNumber || this.state.errors.contactNumber1 || this.state.errors.contactNumber2}</i>
+                    <i style={{ fontFamily: "Serif" }}>{this.state.errors.contactNumber}</i>
                   </div></div>
 
                 <div className='form-group row'>
@@ -184,7 +200,7 @@ class editContact extends Component {
                       <option value="Manila">Manila</option>
                       <option value="Cebu">Cebu</option>
                     </select>
-                    <em style={{ color: "red" }}>{this.state.errors.location}</em>
+                    <i style={{ fontFamily: "Serif" }}>{this.state.errors.location}</i>
                   </div></div>
 
                 <div className='form-group row'>
